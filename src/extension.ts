@@ -31,9 +31,6 @@ const memText = async () => {
 		totalDiskUsed+=fsSize.used;
 	}
 
-	const totalDisk = fsSizes[0].size / 1024 / 1024 / 1024;
-	const usedDisk = fsSizes[0].used / 1024 / 1024 / 1024;
-
 	statusBarMemoryItem.text= `$(server) ${prettyBytes(m.active)}`;
 	statusBarMemoryItem.show();
 	statusCpuItem.text= `$(pulse)${cl.currentLoad.toFixed(2)}%`;
