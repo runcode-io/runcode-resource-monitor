@@ -16,10 +16,10 @@ export function activate(context: vscode.ExtensionContext) {
 	statusDiskItem = vscode.window.createStatusBarItem(
 		vscode.StatusBarAlignment.Right
 	);
-	setInterval(memText, 3000);
+	setInterval(usageText, 3000);
 }
 
-const memText = async () => {
+const usageText = async () => {
 	const m = await mem();
 	const cl = await currentLoad();
 	let fsSizes = await fsSize();
