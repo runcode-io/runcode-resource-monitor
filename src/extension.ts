@@ -7,7 +7,6 @@ let statusCpuItem: vscode.StatusBarItem;
 let statusDiskItem: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
-
 	statusBarMemoryItem = vscode.window.createStatusBarItem(
 		vscode.StatusBarAlignment.Right
 	);
@@ -31,14 +30,11 @@ const memText = async () => {
 		totalDiskUsed+=fsSize.used;
 	}
 
-	const totalDisk = fsSizes[0].size / 1024 / 1024 / 1024;
-	const usedDisk = fsSizes[0].used / 1024 / 1024 / 1024;
-
-	statusBarMemoryItem.text= `$(server) ${prettyBytes(m.active)}`;
+	statusBarMemoryItem.text= `$(memory-icon) ${prettyBytes(m.used-m.buffcache)}/${prettyBytes(m.total,{binary:true})}`;
 	statusBarMemoryItem.show();
-	statusCpuItem.text= `$(pulse)${cl.currentLoad.toFixed(2)}%`;
+	statusCpuItem.text= `$(chip-icon)${cl.currentLoad.toFixed(2)}%`;
 	statusCpuItem.show();
-	statusDiskItem.text= `$(database)${prettyBytes(totalDiskUsed)}/${prettyBytes(totalDiskSize)} | ${prettyBytes(usedDisk)}/${prettyBytes(totalDisk)}`;
+	statusDiskItem.text= `$(database)${prettyBytes(totalDiskUsed)}/${prettyBytes(totalDiskSize,{binary:true})}`;
 	statusDiskItem.show();
   };
 
